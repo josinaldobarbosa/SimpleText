@@ -35,13 +35,17 @@ class Utils {
     return positions;
   }
 
-  static List<Range> ranges(String src, String pattern) {
-    List<Range> ranges = new ArrayList<>();
-    Matcher matcher = Pattern.compile(pattern).matcher(src);
-    while (matcher.find()) {
-      Range range = Range.create(matcher.start(), matcher.end());
-      ranges.add(range);
+    static List<Range> ranges(String src, String pattern) {
+        return ranges(src, Pattern.compile(pattern));
     }
-    return ranges;
-  }
+
+    static List<Range> ranges(String src, Pattern pattern) {
+        List<Range> ranges = new ArrayList<>();
+        Matcher matcher = pattern.matcher(src);
+        while (matcher.find()) {
+            Range range = Range.create(matcher.start(), matcher.end());
+            ranges.add(range);
+        }
+        return ranges;
+    }
 }

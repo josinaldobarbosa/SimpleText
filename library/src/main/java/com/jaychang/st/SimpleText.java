@@ -70,6 +70,23 @@ public class SimpleText extends SpannableString {
     return this;
   }
 
+    public SimpleText pattern(String... patterns) {
+        Pattern[] listPattern = new Pattern[patterns.length];
+        for (int patternPosition = 0; patternPosition < patterns.length; patternPosition++) {
+            listPattern[patternPosition] = Pattern.compile(patterns[patternPosition]);
+        }
+        return this.pattern(listPattern);
+    }
+
+  public SimpleText pattern(Pattern... patterns) {
+    rangeList.clear();
+      for (Pattern pattern : patterns) {
+          List<Range> ranges = Utils.ranges(toString(), pattern);
+          rangeList.addAll(ranges);
+      }
+    return this;
+  }
+
   public SimpleText all() {
     rangeList.clear();
     Range range = Range.create(0, toString().length());
@@ -135,7 +152,7 @@ public class SimpleText extends SpannableString {
     }
     return this;
   }
-  
+
   public SimpleText normal() {
     for (Range range : rangeList) {
       setSpan(new StyleSpan(Typeface.NORMAL), range.from, range.to, SPAN_MODE);

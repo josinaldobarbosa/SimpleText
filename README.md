@@ -42,6 +42,8 @@ dependencies {
 | `range(from:to)`             | match text at specified position                |
 | `ranges(ranges)`             | match all texts at specified positions          |
 | `between(startText:endText)` | match text between two texts                    |
+| `pattern(Pattern...)`        | match all occurrences with object Pattern       |
+| `pattern(String...)`         | match all occurrences with string pattern       |
 
 #### Step 2: Apply style(s)
 
